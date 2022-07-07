@@ -21,8 +21,7 @@ resource "google_compute_network" "vpc_network" {
 # SQL Database
 resource "google_sql_database" "sql-database" {
   name     = "terraform-database"
-  instance = google_sql_database_instance.instance.name
-  depends_on = [ google_sql_database_instance.sql-database-instance ]
+  instance = google_sql_database_instance.sql-database-instance.name
 }
 
 resource "google_sql_database_instance" "sql-database-instance" {
