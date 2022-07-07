@@ -19,11 +19,6 @@ resource "google_compute_network" "vpc_network" {
 }
 
 # SQL Database
-resource "google_sql_database" "sql-database" {
-  name     = "terraform-database"
-  instance = google_sql_database_instance.instance.name
-}
-
 resource "google_sql_database_instance" "sql-database-instance" {
   name             = "terraform-database-instance"
   region           = var.gcp_region
@@ -32,6 +27,11 @@ resource "google_sql_database_instance" "sql-database-instance" {
     tier = "db-f1-micro"
   }
   deletion_protection  = "true"
+}
+
+resource "google_sql_database" "sql-database" {
+  name     = "terraform-database"
+  instance = google_sql_database_instance.instance.name
 }
 
 # BigQuery Dataset
