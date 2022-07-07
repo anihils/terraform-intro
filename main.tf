@@ -19,6 +19,12 @@ resource "google_compute_network" "vpc_network" {
 }
 
 # SQL Database
+resource "google_sql_database" "sql-database" {
+  name     = "terraform-database"
+  instance = google_sql_database_instance.instance.name
+  depends_on = [ google_sql_database_instance.sql-database-instance ]
+}
+
 resource "google_sql_database_instance" "sql-database-instance" {
   name             = "terraform-database-instance"
   region           = var.gcp_region
@@ -29,16 +35,12 @@ resource "google_sql_database_instance" "sql-database-instance" {
   deletion_protection  = "true"
 }
 
-resource "google_sql_database" "sql-database" {
-  name     = "terraform-database"
-  instance = google_sql_database_instance.instance.name
-}
-
 # BigQuery Dataset
 resource "google_bigquery_dataset" "bq-dataset" {
   dataset_id                  = "terraform_dataset"
   description                 = "BigQuery Dataset generated using terraform script"
   location                    = var.gcp_region
+  depends_on                  = [ google_service_account.bqowner ]
 
   access {
     role          = "OWNER"
