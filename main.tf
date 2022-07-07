@@ -5,7 +5,7 @@ provider "google" {
 }
 
 # Cloud storage bucket
-resource "google_storage_bucket" "terraform-bucket-0707" {
+resource "google_storage_bucket" "storage-bucket-anihils" {
   name          = "terraform-bucket"
   location      = var.gcp_region
   force_destroy = true
