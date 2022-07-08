@@ -25,7 +25,7 @@ resource "google_sql_database" "sql-database" {
 }
 
 resource "google_sql_database_instance" "sql-database-instance" {
-  name             = "learn-resource-dbinstance"
+  name             = "learn-resource-dbinstance-0807"
   region           = var.gcp_region
   database_version = "MYSQL_8_0"
   settings {
