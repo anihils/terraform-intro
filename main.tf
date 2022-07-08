@@ -35,8 +35,8 @@ resource "google_sql_database_instance" "sql-database-instance" {
 }
 
 # BigQuery Dataset
-resource "google_bigquery_dataset" "bq-dataset" {
-  dataset_id                  = "learn-resource-bqdataset"
+resource "google_bigquery_dataset" "bq_dataset" {
+  dataset_id                  = "learn_resource_bqdataset"
   description                 = "BigQuery Dataset generated using terraform script"
   location                    = var.gcp_region
   depends_on                  = [ google_service_account.bqowner ]
