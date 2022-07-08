@@ -5,8 +5,8 @@ provider "google" {
 }
 
 # Cloud storage bucket
-resource "google_storage_bucket" "storage-bucket-anihils" {
-  name          = "terraform-bucket"
+resource "google_storage_bucket" "storage-bucket" {
+  name          = "learn-resources-bucket"
   location      = var.gcp_region
   force_destroy = true
   uniform_bucket_level_access = true
@@ -14,18 +14,18 @@ resource "google_storage_bucket" "storage-bucket-anihils" {
 
 # VPC Network
 resource "google_compute_network" "vpc_network" {
-  name                    = "terraform-network"
+  name                    = "learn-resource-network"
   auto_create_subnetworks = "true"
 }
 
 # SQL Database
 resource "google_sql_database" "sql-database" {
-  name     = "terraform-database"
+  name     = "learn-resource-db"
   instance = google_sql_database_instance.sql-database-instance.name
 }
 
 resource "google_sql_database_instance" "sql-database-instance" {
-  name             = "terraform-database-instance"
+  name             = "learn-resource-dbinstance"
   region           = var.gcp_region
   database_version = "MYSQL_8_0"
   settings {
@@ -36,7 +36,7 @@ resource "google_sql_database_instance" "sql-database-instance" {
 
 # BigQuery Dataset
 resource "google_bigquery_dataset" "bq-dataset" {
-  dataset_id                  = "terraform_dataset"
+  dataset_id                  = "learn-resource-bqdataset"
   description                 = "BigQuery Dataset generated using terraform script"
   location                    = var.gcp_region
   depends_on                  = [ google_service_account.bqowner ]
