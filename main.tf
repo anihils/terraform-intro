@@ -31,7 +31,7 @@ resource "google_sql_database_instance" "sql-database-instance" {
   settings {
     tier = "db-f1-micro"
   }
-  deletion_protection  = "true"
+  deletion_protection  = "false"
 }
 
 # BigQuery Dataset
